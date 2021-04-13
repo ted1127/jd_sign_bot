@@ -30,8 +30,8 @@ async function changeFile () {
 
 async function sendNotify (text,desp) {
   const options ={
-    uri:  `https://sc.ftqq.com/${serverJ}.send`,
-    form: { text, desp },
+    uri:  `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=b112669d-a40d-4e8e-b360-7b835221511a`,
+    body: { msgtype: 'text', text: {content: `${text}\n${desp}`} },
     json: true,
     method: 'POST'
   }
