@@ -31,7 +31,7 @@ async function changeFile () {
 async function sendNotify (text,desp) {
   const options ={
     uri:  `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=e1db5d30-95ca-4817-8adf-bce1073e64b8`,
-    body: { msgtype: 'text', text: {content: `${text}\n${desp}`} },
+    body: { msgtype: 'markdown', markdown: {content: `${text}\n${desp}`} },
     json: true,
     method: 'POST'
   }
@@ -63,7 +63,8 @@ async function start() {
     if (fs.existsSync(path)) {
       content = fs.readFileSync(path, "utf8");
     }
-      
+    
+    content = content.replace(/\n\n/, '')
     console.log(content)
       
     let t = content.match(/【签到概览】:((.|\n)*)【签到总计】/)
