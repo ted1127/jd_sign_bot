@@ -72,8 +72,8 @@ async function start() {
     let res2 = t2 ? t2[1].replace(/\n/,'') : '总计0'
     
     let content_s = content.split('【签到概览】');
-    let content1 = content_s[0]
-    let content2 = '【签到概览】' + content_s[1]
+    let content1 = content_s[0].trim()
+    let content2 = '【签到概览】' + content_s[1].trim()
     
     await sendNotify("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content1);
     await sendNotify(new Date().toLocaleDateString(), content2);
