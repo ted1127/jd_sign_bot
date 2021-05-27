@@ -64,7 +64,7 @@ async function start() {
       content = fs.readFileSync(path, "utf8");
     }
     
-    content = content.replace(/\n\n/, '')
+    content.replace(/[\r\n]{2}/g, '\r\n')
     console.log(content)
       
     let t = content.match(/【签到概览】:((.|\n)*)【签到总计】/)
