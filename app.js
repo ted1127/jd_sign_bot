@@ -65,15 +65,18 @@ async function start() {
     }
     
     content = content.replace(/[\r\n]{2}/g, '\r\n')
-    console.log(content)
-      
+
     let t = content.match(/【签到概览】:((.|\n)*)【签到总计】/)
     let res = t ? t[1].replace(/\n/,'') : '失败'
     let t2 = content.match(/【签到总计】:((.|\n)*)【账号总计】/)
     let res2 = t2 ? t2[1].replace(/\n/,'') : '总计0'
-
     
-    await sendNotify("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content);
+    let content_s = content.split('【签到概览】');
+    let content1 = content_s[0]
+    let content2 = '【签到概览】' + content_s[1]
+    
+    await sendNotify("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content1);
+    await sendNotify(new Date().toLocaleDateString(), content2);
   }
 }
 
